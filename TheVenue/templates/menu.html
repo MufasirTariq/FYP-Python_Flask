@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The Menu</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Venue template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.css') }}">
+<link href="{{ url_for('static', filename='plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css') }}">
+<link href="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='plugins/jquery-timepicker/jquery.timepicker.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/menu.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/menu_responsive.css') }}">
+<style>
+	body{
+
+    background: #d1d5db;
+}
+
+.height{
+
+    height: 10vh;
+}
+
+.form{
+
+    position: relative;
+}
+
+.form .fa-search{
+
+    position: absolute;
+    top:20px;
+    left: 20px;
+    color: #9ca3af;
+
+}
+
+.form span{
+
+    position: absolute;
+    right: 17px;
+    top: 13px;
+    padding: 2px;
+    border-left: 1px solid #d1d5db;
+
+}
+
+.left-pan{
+    padding-left: 7px;
+}
+
+.left-pan i{
+
+   padding-left: 10px;
+}
+
+.form-input{
+
+    height: 55px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+
+.form-input:focus{
+
+    box-shadow: none;
+    border:none;
+}
+	<style>
+    .bordered-table {
+    border-collapse: collapse; /* Ensures that the borders are merged */
+    width: 100%; /* Ensures the table takes up the full width of its container */
+}
+
+.bordered-table th, .bordered-table td {
+    border: 1px solid #000; /* Adds a solid black border to the cells */
+    padding: 8px; /* Adds some padding inside the cells for better readability */
+    text-align: left; /* Aligns the text to the left */
+}
+
+.bordered-table th {
+    background-color: #f2f2f2; /* Adds a light grey background to the header cells */
+}
+</style>
+</head>
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start">
+						<div class="logo">
+							<a href="#">
+								<div>The Venue</div>
+								<div>restaurant</div>
+							</a>
+						</div>
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="/">home</a></li>
+								<li><a href="/about">about us</a></li>
+								<li><a href="/menu">menu</a></li>
+								<li><a href="/elements">delivery</a></li>
+								<li><a href="/feedback">feedback</a></li>
+								<li><a href="/contact">reservation</a></li>
+							</ul>
+						</nav>
+						<div class="reservations_phone ml-auto" >
+							<a href="#" style="text-decoration: none;" id="checkCart">View Cart</a>
+						</div>
+						<div class="reservations_phone ml-auto" >
+							<a href="#" style="text-decoration: none;" id="forSearchModal">Search</a>
+							<i class="fa fa-search"></i>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Home -->
+	<div class="home">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="static/images/menu.jpg" data-speed="0.8"></div>
+		<div class="home_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content text-center">
+							<div class="home_subtitle page_subtitle">The Venue</div>
+							<div class="home_title"><h1>The Menu</h1></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- The Menu -->
+
+	<div class="themenu">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<div class="section_title"><h1>Restraunt Special</h1></div>
+					</div>
+				</div>
+			<div class="row themenu_row">
+				<!-- Starters -->
+				<div class="col-lg-4 themenu_column">
+					<div class="themenu_image"><img src="static/images/starters.jpg" alt=""></div>
+					<div class="themenu_col trans_400">
+						<div class="themenu_col_title">Starters</div>
+						<div class="dish_list">
+
+							<!-- Dish -->
+							{% for s in stater %}
+							<div class="dish">
+								<div class="dish_title_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+									<div class="dish_title">{{s[0]}}</div>
+									<div class="dish_price">{{s[1]}}</div>
+									<div class="dish_type" style="display:none">{{s[2]}}</div>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										<li class="dish_details" >{{s[3]}}</li>
+									</ul>
+								</div>
+								<div class="dish_order"><a href="#" class="addToOrder">Order Now</a></div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				<!-- Main -->
+				<div class="col-lg-4 themenu_column">
+					<div class="themenu_image"><img src="static/images/main.jpg" alt=""></div>
+					<div class="themenu_col trans_400">
+						<div class="themenu_col_title">Main</div>
+						<div class="dish_list">
+
+							<!-- Dish -->
+							{% for m in main %}
+							<div class="dish">
+								<div class="dish_title_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+									<div class="dish_title">{{m[0]}}</div>
+									<div class="dish_price">{{m[1]}}</div>
+									<div class="dish_type" style="display:none">{{m[2]}}</div>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										<li class="dish_details">{{m[3]}}</li>
+									</ul>
+								</div>
+								<div class="dish_order"><a href="#" class="addToOrder">Order Now</a></div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				<!-- Deserts -->
+				<div class="col-lg-4 themenu_column">
+					<div class="themenu_image"><img src="static/images/deserts.jpg" alt=""></div>
+					<div class="themenu_col trans_400">
+						<div class="themenu_col_title">Desserts</div>
+						<div class="dish_list">
+
+							<!-- Dish -->
+							{% for d in desert %}
+							<div class="dish">
+								<div class="dish_title_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+									<div class="dish_title">{{d[0]}}</div>
+									<div class="dish_price">{{d[1]}}</div>
+									<div class="dish_type" style="display:none">{{d[2]}}</div>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										<li class="dish_details">{{d[3]}}</li>
+									</ul>
+								</div>
+								<div class="dish_order"><a href="#" class="addToOrder">Order Now</a></div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Fast Food Menu	-->
+<div class="themenu">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<div class="section_title"><h1>Fast Food</h1></div>
+					</div>
+				</div>
+
+			<div class="row themenu_row">
+				<!-- Burgers -->
+				<div class="col-lg-4 themenu_column">
+					<div class="themenu_image"><img src="static/images/BurgerMenu.jpg" alt=""></div>
+					<div class="themenu_col trans_400">
+						<div class="themenu_col_title">Burgers</div>
+						<div class="dish_list">
+
+							<!-- Dish -->
+							{% for s in burger %}
+							<div class="dish">
+								<div class="dish_title_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+									<div class="dish_title">{{s[0]}}</div>
+									<div class="dish_price">{{s[1]}}</div>
+									<div class="dish_type" style="display:none">{{s[2]}}</div>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										<li class="dish_details">{{s[3]}}</li>
+									</ul>
+								</div>
+								<div class="dish_order"><a href="#" class="addToOrder">Order Now</a></div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				<!-- Pizza -->
+				<div class="col-lg-4 themenu_column">
+					<div class="themenu_image"><img src="static/images/PizzaMenu.jpg" alt=""></div>
+					<div class="themenu_col trans_400">
+						<div class="themenu_col_title">Pizza</div>
+						<div class="dish_list">
+
+							<!-- Dish -->
+							{% for m in pizza %}
+							<div class="dish">
+								<div class="dish_title_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+									<div class="dish_title">{{m[0]}}</div>
+									<div class="dish_price">{{m[1]}}</div>
+									<div class="dish_type" style="display:none">{{m[2]}}</div>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										<li class="dish_details">{{m[3]}}</li>
+									</ul>
+								</div>
+								<div class="dish_order"><a href="#" class="addToOrder">Order Now</a></div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				<!-- Others -->
+				<div class="col-lg-4 themenu_column">
+					<div class="themenu_image"><img src="static/images/OthersMenu.jpg" alt=""></div>
+					<div class="themenu_col trans_400">
+						<div class="themenu_col_title">Others</div>
+						<div class="dish_list">
+
+							<!-- Dish -->
+							{% for d in others %}
+							<div class="dish">
+								<div class="dish_title_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+									<div class="dish_title">{{d[0]}}</div>
+									<div class="dish_price">{{d[1]}}</div>
+									<div class="dish_type" style="display:none">{{d[2]}}</div>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										<li class="dish_details">{{d[3]}}</li>
+									</ul>
+								</div>
+								<div class="dish_order"><a href="#" class="addToOrder">Order Now</a></div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Deals Menu	-->
+<div class="themenu">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<div class="section_title"><h1>Special Deals</h1></div>
+					</div>
+				</div>
+
+			<div class="row themenu_row">
+
+				<div class="col-lg-4 themenu_column">
+					<div class="themenu_image"><img src="static/images/midnightDeal.jpg" alt=""></div>
+					<div class="themenu_col trans_400">
+						<div class="themenu_col_title">MidNight</div>
+						<div class="dish_list">
+
+							<!-- Dish -->
+							{% for s in midnight %}
+							<div class="dish">
+								<div class="dish_title_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+									<div class="dish_title">{{s[0]}}</div>
+									<div class="dish_price">{{s[4]}}</div>
+									<div class="dish_type" style="display:none">{{s[2]}}</div>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										<li class="dish_details">{{s[3]}}</li>
+									</ul>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										Original Price: <li class="dish_details">{{s[1]}}</li>
+									</ul>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										Discount: <li class="dish_details">{{s[5]}}%</li>
+									</ul>
+								</div>
+								<div class="dish_order"><a href="#" class="addToOrder">Order Now</a></div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				<!-- Main -->
+				<div class="col-lg-4 themenu_column">
+					<div class="themenu_image"><img src="static/images/OccDeal.jpg" alt=""></div>
+					<div class="themenu_col trans_400">
+						<div class="themenu_col_title">Occasionally</div>
+						<div class="dish_list">
+
+							<!-- Dish -->
+							{% for m in occasion %}
+							<div class="dish">
+								<div class="dish_title_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+									<div class="dish_title">{{m[0]}}</div>
+									<div class="dish_price">{{m[4]}}</div>
+									<div class="dish_type" style="display:none">{{m[2]}}</div>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										<li class="dish_details">{{m[3]}}</li>
+									</ul>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										Original Price: <li class="dish_details">{{m[1]}}</li>
+									</ul>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										Discount: <li class="dish_details">{{m[5]}}%</li>
+									</ul>
+								</div>
+								<div class="dish_order"><a href="#" class="addToOrder">Order Now</a></div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+
+				<!-- Special Deal -->
+				<div class="col-lg-4 themenu_column">
+					<div class="themenu_image"><img src="static/images/SpecialMenu.jpg" alt=""></div>
+					<div class="themenu_col trans_400">
+						<div class="themenu_col_title">Special</div>
+						<div class="dish_list">
+
+							<!-- Dish -->
+							{% for d in special %}
+							<div class="dish">
+								<div class="dish_title_container d-flex flex-xl-row flex-column align-items-start justify-content-start">
+									<div class="dish_title">{{d[0]}}</div>
+									<div class="dish_price">{{d[4]}}</div>
+									<div class="dish_type" style="display:none">{{d[2]}}</div>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										<li class="dish_details">{{d[3]}}</li>
+									</ul>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										Original Price: <li class="dish_details">{{d[1]}}</li>
+									</ul>
+								</div>
+								<div class="dish_contents">
+									<ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+										Discount: <li class="dish_details">{{d[5]}}%</li>
+									</ul>
+								</div>
+								<div class="dish_order"><a href="#" class="addToOrder">Order Now</a></div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<!-- Footer Logo -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_logo">
+						<div class="footer_logo_title">The Venue</div>
+						<div class="footer_logo_subtitle">restaurant</div>
+					</div>
+					<div class="copyright">
+<p style="line-height: 1.2;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Project is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by PUCIT Students</a></p></div>
+				</div>
+
+				<!-- Footer About -->
+				<div class="col-lg-6 footer_col">
+					<div class="footer_about">
+						<p>"Come experience amazing food and a great time at The Venue. Our chefs put their hearts into every dish, using the freshest ingredients and keeping everything super clean. We're all about making sure you have a fantastic meal in a cozy atmosphere. So, why not join us? Your tastebuds will thank you!"</p>
+					</div>
+				</div>
+
+				<!-- Footer Contact -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_contact">
+						<ul>
+							<li class="d-flex flex-row align-items-start justify-content-start">
+								<div><div class="footer_contact_title">Address:</div></div>
+								<div class="footer_contact_text">Gulberg-III, Main boulevard, Lahore</div>
+							</li>
+							<li class="d-flex flex-row align-items-start justify-content-start">
+								<div><div class="footer_contact_title">Phone:</div></div>
+								<div class="footer_contact_text">+53 345 7953 32453</div>
+							</li>
+							<li class="d-flex flex-row align-items-start justify-content-start">
+								<div><div class="footer_contact_title">Email:</div></div>
+								<div class="footer_contact_text">theVenueResraurant@gmail</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+	<div class="modal fade" id="checkCartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">View Cart</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% if cartItems %}
+                    {% for c in cartItems %}
+                        <div class="card w-100 mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title">{{c[1]}}</h5>
+                                    <h5 class="text-right">Rs.{{c[2]}}</h5>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="card-text"><strong>Ingredients: </strong>{{c[3]}}</p>
+                                    <input type="hidden" class="cartItemId" value="{{c[0]}}">
+                                    <a href="#" class="btn btn-outline-danger" id="removeItemFromCart">Remove Item</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h2 class="text-center"> Your Cart is Empty</h2>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal" id="proceedCartTopayment">Proceed</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="MenuSearchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="examodalLongTitle">Search..</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row height d-flex justify-content-center align-items-center">
+                    <div class="col-md-7">
+                        <div class="form">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control form-input" id="searchMenu" placeholder="Search menu...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-container">
+                    <h3>Main Menu</h3>
+                    <table id="mainMenuTable" class="col-12 bordered-table dish">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Details</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Main Menu results will be inserted here -->
+                        </tbody>
+                    </table>
+
+                    <h3>Fast Food</h3>
+                    <table id="fastFoodTable" class="col-12 bordered-table dish">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Details</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Fast Food results will be inserted here -->
+                        </tbody>
+                    </table>
+
+                    <h3>Deals</h3>
+                    <table id="dealsTable" class="col-12 bordered-table dish">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Details</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Deals results will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal" id="done">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script>
+	$(document).ready(function() {
+
+	$('#forSearchModal').on('click', function(e){
+		e.preventDefault();
+		$('#MenuSearchModal').modal('show');
+	});
+
+	$('#searchMenu').on('input', function(){
+		var target =$('#searchMenu').val();
+
+		$.ajax({
+			type: 'GET',
+			url:'/searchMenuItems/' + target,
+			success: function(res){
+				console.log(res);
+				 $('#mainMenuTable tbody').empty();
+                $('#fastFoodTable tbody').empty();
+                $('#dealsTable tbody').empty();
+
+                displayResults('#mainMenuTable tbody', res[0]);
+                displayResults('#fastFoodTable tbody', res[1]);
+                displayResults('#dealsTable tbody', res[2]);
+			},
+		});
+	});
+
+	 function displayResults(tableBodySelector, items) {
+        items.forEach(function(item) {
+            var itemObj = JSON.parse(item);
+
+            var row = `<tr>
+                <td class="dish_title" >${itemObj.name}</td>
+                <td class="dish_price" >${itemObj.price}</td>
+                <td class="dish_details" >${itemObj.details}</td>
+                <td class="dish_type" >${itemObj.type}</td>
+            </tr>`;
+            $(tableBodySelector).append(row);
+        });
+    }
+
+    $('.addToOrder').click(function(event) {
+        event.preventDefault();
+        var nm = $(this).closest('.dish').find('.dish_title').text();
+        var pr = $(this).closest('.dish').find('.dish_price').text();
+        var ty = $(this).closest('.dish').find('.dish_type').text();
+        var dt = $(this).closest('.dish').find('.dish_details').text();
+
+        var formdata = new FormData();
+        formdata.append("name", nm);
+        formdata.append("price", pr);
+        formdata.append("type", ty);
+        formdata.append("details", dt);
+
+		$.ajax({
+			type: 'POST',
+			url:'/addCart',
+			data: formdata,
+			contentType: false,
+            processData: false,
+            success:function(res){
+            	console.log(res)
+            	$('.modal-body').load(location.href + ' .modal-body');
+            },
+		})
+    });
+
+
+    $('.deleteSelectedItem').on('click',function(e){
+    	e.preventDefault()
+    	var nm = $(this).closest('.dish').find('.dish_title').text();
+    	$.ajax({
+    		type:'DELETE',
+    		url:'/deleteItemFromCart/' + nm,
+    		success:function(res){
+    			console.log(res);
+    			if(res == "Deleted"){
+    				window.location.href = "/menu";
+    			}
+    		},
+    	});
+    });
+
+    $('#checkCart').on('click', function(){
+    	$('#checkCartModal').modal('show');
+    });
+
+    $('#proceedCartTopayment').on('click', function(e){
+    	window.location.href = '/elements'
+    });
+
+    $(document).on('click', '#removeItemFromCart', function(){
+    	var id = $(this).closest('.card-body').find('.cartItemId').val();
+		$.ajax({
+			type:'DELETE',
+			url:'/deleteItemFromCart/'+id,
+			success:function(res){
+				console.log(res);
+				$('.modal-body').load(location.href + ' .modal-body');
+			},
+		});
+    });
+});
+
+
+
+</script>
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TweenMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TimelineMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/animation.gsap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/ScrollToPlugin.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/easing/easing.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/parallax-js-master/parallax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-timepicker/jquery.timepicker.js') }}"></script>
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+</body>
+</html>

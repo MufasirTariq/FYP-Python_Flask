@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FeedBack</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Venue template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.css') }}">
+<link href="{{ url_for('static', filename='plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css') }}">
+<link href="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='plugins/jquery-timepicker/jquery.timepicker.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/blog.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/blog_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/menu.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/menu_responsive.css') }}">
+<style>
+	.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #ddd;
+    font-size: 6rem;
+    padding: 0.1em;
+    transition: color 0.3s;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f5b301;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f5b301;
+}
+
+</style>
+</head>
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start">
+						<div class="logo">
+							<a href="#">
+								<div>The Venue</div>
+								<div>restaurant</div>
+							</a>
+						</div>
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="/">home</a></li>
+								<li><a href="/about">about us</a></li>
+								<li><a href="/menu">menu</a></li>
+								<li><a href="/elements">delivery</a></li>
+								<li><a href="/feedback">Feedback</a></li>
+								<li><a href="/contact">reservation</a></li>
+							</ul>
+						</nav>
+						<div class="reservations_phone ml-auto">Feedback</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+
+	<!-- Home -->
+
+	<div class="home">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="static/images/blog.jpg" data-speed="0.8"></div>
+		<div class="home_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content text-center">
+							<div class="home_subtitle page_subtitle">The Venue</div>
+							<div class="home_title"><h1>Feedback</h1></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--Displaying Reviews-->
+	<div class="themenu">
+    <div class="container">
+        <div class="row themenu_row">
+			<section style="color: #000;">
+			  <div class="container py-5">
+				<div class="row d-flex justify-content-center">
+				  <div class="col-md-10 col-xl-8 text-center">
+					<h3 class="fw-bold mb-4">Reviews</h3>
+					<p class="mb-4 pb-2 mb-md-5 pb-md-0">
+					  Our restaurant has garnered glowing reviews from customers who appreciate our exceptional food quality, attentive service, and inviting ambiance.
+					  Many reviewers also note the friendliness and attentiveness of our staff, making their dining experiences pleasant and memorable.
+					  Overall, our guests find great value in our offerings and express eagerness to return and recommend our restaurant to others.
+					</p>
+					<div class="star-rating" id="star-rating"></div>
+				  </div>
+				</div>
+				<div class="row text-center">
+
+				  {%for i in FeedbackList%}
+				  <div class="col-md-4 mb-0">
+					<div class="card">
+					  <div class="card-body py-4 mt-2">
+						<h5 class="font-weight-bold">{{i[1]}}</h5>
+						<h6 class="font-weight-bold my-3"> {{i[2]}}'s {{i[3]}}</h6>
+						<h6 class="font-weight-bold my-3">{{i[5]}}</h6>
+						<p class="mb-2">{{i[4]}}</p>
+					  </div>
+					</div>
+				  </div>
+				{% endfor %}
+				</div>
+			  </div>
+			</section>
+        </div>
+    </div>
+</div>
+
+
+<!--Review Form-->
+	<div class="themenu">
+    <div class="container">
+        <div class="row themenu_row">
+            <!-- Cart-->
+            <div class="col-lg-12 themenu_column">
+                <div class="themenu_col trans_400">
+                    <div class="themenu_col_title">Customer Review</div>
+					<div id="form">
+                        <form>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="email">Email</label>
+                                  <input type="email" class="form-control" id="email" placeholder="Enter your Email">
+                                </div>
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="phone">Contact Number </label>
+                                  <input type="text" class="form-control" id="phone" placeholder="Contact Phone Number">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="about">About ?</label>
+                                  <select id="about" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option value="restraunt"> Restraunt </option>
+                                    <option value="services"> Services </option>
+                                    <option value="delivery"> Delivery </option>
+                                    <option value="workers"> Workers</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                  <label for="comfeed">You are ?</label>
+                                  <select id="comfeed" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option value="feedback"> Feedback </option>
+                                    <option value="complain"> Complain </option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="info">Describe here</label>
+                                <input type="text" class="form-control" id="info" placeholder="I'm Mr/Ms. and i want to...">
+                              </div>
+
+                            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<!-- Footer Logo -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_logo">
+						<div class="footer_logo_title">The Venue</div>
+						<div class="footer_logo_subtitle">restaurant</div>
+					</div>
+					<div class="copyright">
+					<p style="line-height: 1.2;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Project is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by PUCIT Students</a></p></div>
+				</div>
+
+				<!-- Footer About -->
+				<div class="col-lg-6 footer_col">
+					<div class="footer_about">
+						<p>"Come experience amazing food and a great time at The Venue. Our chefs put their hearts into every dish, using the freshest ingredients and keeping everything super clean. We're all about making sure you have a fantastic meal in a cozy atmosphere. So, why not join us? Your tastebuds will thank you!"</p>
+					</div>
+				</div>
+
+				<!-- Footer Contact -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_contact">
+						<ul>
+							<li class="d-flex flex-row align-items-start justify-content-start">
+								<div><div class="footer_contact_title">Address:</div></div>
+								<div class="footer_contact_text">Gulberg-III, Main boulevard, Lahore</div>
+							</li>
+							<li class="d-flex flex-row align-items-start justify-content-start">
+								<div><div class="footer_contact_title">Phone:</div></div>
+								<div class="footer_contact_text">+53 345 7953 32453</div>
+							</li>
+							<li class="d-flex flex-row align-items-start justify-content-start">
+								<div><div class="footer_contact_title">Email:</div></div>
+								<div class="footer_contact_text">theVenueResraurant@gmail</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><span class="feedback"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p> We appreciate your <span class="feedback"></span> about our <span id="fcabout"></span>. Thank you!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="dismiss-modal" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script>
+// Variables to control the star rating
+const totalStars = 5; // Total number of stars
+const currentRating = 4; // Current rating value
+
+document.addEventListener("DOMContentLoaded", function() {
+    const starRatingDiv = document.getElementById('star-rating');
+
+    // Create stars based on totalStars
+    for (let i = totalStars; i > 0; i--) {
+        const radioInput = document.createElement('input');
+        radioInput.type = 'radio';
+        radioInput.id = `star${i}`;
+        radioInput.name = 'rating';
+        radioInput.value = i;
+        if (i === currentRating) {
+            radioInput.checked = true;
+        }
+
+        const label = document.createElement('label');
+        label.htmlFor = `star${i}`;
+        label.innerHTML = '&#9733;'; // Star character
+
+        starRatingDiv.appendChild(radioInput);
+        starRatingDiv.appendChild(label);
+    }
+
+    // Add event listener to update current rating on click
+    const stars = document.querySelectorAll('.star-rating input');
+    stars.forEach(star => {
+        star.addEventListener('change', (event) => {
+            console.log('New rating:', event.target.value);
+        });
+    });
+});
+
+	$(document).ready(function(){
+	$(document).on('click','.deleteItem',function(e){
+		e.preventDefault();
+		var id = $(this).closest('.dish').find('.dish_id').text();
+		console.log(id);
+
+		$.ajax({
+			type:'DELETE',
+			url:'/deleteItemFromCart/'+id,
+			success:function(res){
+				console.log(res);
+				 $('.themenu').load(location.href + ' .themenu');
+			},
+		});
+	});
+
+	$('#proceedOrder').on('click',function(e){
+		e.preventDefault();
+		window.location.href = "/elements";
+	});
+
+	$('#submit').on('click',function(e){
+		e.preventDefault();
+
+		var nm = $('#name').val();
+		var em = $('#email').val();
+		var ph = $('#phone').val();
+		var ab = $('#about').val();
+		var cf = $('#comfeed').val();
+		var info = $('#info').val();
+
+		var formdata = new FormData();
+		formdata.append('name',nm);
+		formdata.append('email',em);
+		formdata.append('phone',ph);
+		formdata.append('about',ab);
+		formdata.append('comfeed',cf);
+		formdata.append('info',info);
+
+		$.ajax({
+			type:'POST',
+			url:'/complain',
+			data: formdata,
+			contentType: false,
+			processData: false,
+			success: function(res){
+				console.log(res);
+				if(res.comfeed === 'feedback'){
+					$('.feedback').text(res.comfeed);
+					$('#fcabout').text(res.about);
+					$('#feedbackModal').modal('show');
+				} else {
+					$('.feedback').text(res.comfeed);
+					$('#fcabout').text(res.about);
+					$('#feedbackModal').modal('show');
+				}
+			},
+		});
+	});
+
+	$('#dismiss-modal').on('click', function(){
+		window.location.href = '/feedback'
+	})
+});
+</script>
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TweenMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TimelineMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/animation.gsap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/ScrollToPlugin.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/easing/easing.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/parallax-js-master/parallax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-timepicker/jquery.timepicker.js') }}"></script>
+<script src="{{ url_for('static', filename='js/blog.js') }}"></script>
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+
+</body>
+</html>

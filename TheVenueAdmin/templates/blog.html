@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="au theme template">
+	<meta name="author" content="Hau Nguyen">
+	<meta name="keywords" content="au theme template">
+	<title>Blog</title>
+<link href="{{ url_for('static', filename='css/font-face.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/wow/animate.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/slick/slick.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='css/theme.css') }}" rel="stylesheet" media="all">
+</head>
+
+<body class="animsition">
+	<div class="page-wrapper">
+
+        <!-- MENU SIDEBAR-->
+
+        <aside class="menu-sidebar d-none d-lg-block">
+
+            <div class="logo">
+                <a href="#"><img src="static/images/icon/logo.png" alt="Admin" /></a>
+            </div>
+
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+
+                        <li>
+                            <a href="/ordertable"><i class="fas fa-chart-bar"></i>Orders</a>
+                        </li>
+
+                        <li>
+                            <a href="/reservation"><i class="fas fa-table"></i>Reservation</a>
+                        </li>
+
+                        <li>
+                            <a href="/menu"><i class="far fa-check-square"></i>Menu</a>
+                        </li>
+
+                        <li>
+                            <a href="/blog"><i class="fas fa-calendar-alt"></i><strong>Blogs</strong></a>
+                        </li>
+
+                        <li>
+                            <a href="/feedback"><i class="fas fa-map-marker-alt"></i>Feedback/Complain</a>
+                        </li>
+                        <li>
+                           <a href="/staff"><i class="fa-solid fa-users-line"></i>Staff</a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+
+                            <form class="form-header" action="" method="POST">
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <button class="au-btn--submit" type="submit"><i class="zmdi zmdi-search"></i></button>
+                            </form>
+
+                            <div class="header-button">
+                                <div class="noti-wrap">
+                                    <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-email"></i>
+                                        <span class="quantity" >{{totalFeedComp}}</span>
+                                            <div class="email-dropdown js-dropdown">
+                                                <div class="email__title">
+                                                    <p>New Feedback & Complains</p>
+                                                </div>
+
+                                                    {% for c in notiData%}
+                                                        <div class="email__item">
+
+                                                            <div class="image img-cir img-40">
+                                                                <img src="static/images/icon/avatar-07.jpg" alt="Customer Profile Picture" />
+                                                            </div>
+
+                                                            <div class="content">
+                                                                <p>{{c[0]}}</p>
+                                                                <span>{{c[1]}} on {{c[2]}} at {{c[3]}} </span>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                        <div class="email__footer"><a href="#">See all notifications</a></div>
+                                    </div>
+                                </div>
+                                        <div class="noti__item js-item-menu">
+                                            <i class="zmdi zmdi-notifications"></i>
+                                                <span class="quantity"></span>
+                                                    <div class="notifi-dropdown js-dropdown">
+                                                        <div class="notifi__title"><p>Orders Notifications</p></div>
+
+                                                        {% for o in order%}
+                                                            <div class="notifi__item">
+                                                                <div class="bg-c3 img-cir img-40">
+                                                                    <i class="zmdi zmdi-file-text"></i>
+                                                                </div>
+                                                                <div class="content">
+                                                                    <p>{{o[0]}}</p>
+                                                                    <span class="date">Ph: {{o[1]}}</span>
+                                                                    <span class="date">{{o[2]}} at {{o[3]}}</span>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                            <div class="notifi__footer"><a href="#">See all Orders</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image"><img src={{dp}} alt={{username}} /></div>
+
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">{{username}}</a>
+                                            <input type="hidden" id="admin_id" value={{admin_id}}>
+                                        </div>
+
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#"><img src="{{dp}}" alt={{username}} /></a>
+                                                </div>
+
+                                                <div class="content">
+                                                    <h5 class="name"><a href="#">{{username}}</a></h5>
+                                                    <span class="email">{{email}}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="account-dropdown__body">
+
+                                                <div class="account-dropdown__item">
+                                                    <a href="/updateAdminAccount"><i class="zmdi zmdi-account"></i>Update Account</a>
+                                                </div>
+
+                                                <div class="account-dropdown__item">
+                                                    <a href="/registerAdminAccount"><i class="fa fa-edit"></i>Register</a>
+                                                </div>
+
+                                                <div class="account-dropdown__item">
+                                                    <a href="#" id="deleteAccountLink"><i class="fa fa-power-off"></i>Delete Account</a>
+                                                </div>
+
+                                                <div class="account-dropdown__item">
+                                                    <a href="/loginAdminAccount"><i class="fa fa-plus-circle"></i>Login to Another Account</a>
+                                                </div>
+
+                                            </div>
+                                            <div class="account-dropdown__footer"><a href="/logout"><i class="zmdi zmdi-power"></i>Logout</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+			<!-- MAIN CONTENT-->
+			<div class="main-content">
+				<div class="section__content section__content--p30">
+
+                    <div class="text-left" style="padding-bottom: 10px; padding-right: 15px; ">
+                        <button type="button" class="btn btn-dark" id="uploadBlog">Upload New Blog</button>
+                    </div>
+
+					<div class="container-fluid">
+                        <div class="row">
+
+                        <!--Display Blogs-->
+                            {% for b in blogs %}
+                                <div class="col-sm-4 col-md-4" style="margin-top: 3%; ">
+                                    <div class="card" style="width: 100%; height: 100%;">
+                                        <div id="cardImage" >
+                                            <img class="card-img-top" src="static/images/blogs/{{b[2]}}" alt="Card image cap" STYLE="width : 100%; height : 500px;">
+                                        </div>
+
+                                        <div id="cardBody" style="display: inline-block;">
+                                            <div class="card-body">
+                                                <input type="text" style="display:none" class="b_id" value={{b[0]}}>
+
+                                                <h5 class="card-title" >{{b[3]}}</h5>
+                                                <textarea class="b_about" style="display: none;" >{{b[3]}}</textarea>
+
+                                                <strong>They said, </strong>
+                                                <p class="card-text">{{b[7]}}</p>
+                                                <textarea  class="b_des" style="display: none;" >{{b[7]}}</textarea>
+
+                                            </div>
+
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><strong>Uploading Date : </strong> {{b[1]}}</li>
+
+                                                <li class="list-group-item"><strong>Reviewer : </strong>{{b[4]}}</li>
+                                                <input type="text" style="display:none" class="b_name" value={{b[4]}}>
+
+                                                <li class="list-group-item"><strong>Inspired From : </strong> {{b[5]}}</li>
+
+                                                <li class="list-group-item"><strong>Reacted : </strong> {{b[6]}}</li>
+                                            </ul>
+
+                                            <div class="card-body">
+                                                <a href="#" class="delBlog">Delete</a>
+                                                <a href="#" class="updateBlog">Update</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                    <!--Display blogs end-->
+					    </div>
+                    </div>
+				</div>
+			</div>
+			<!-- END PAGE CONTAINER-->
+		</div>
+
+        <!--Upload blog MODAL-->
+            <div class="modal fade" id="BlogUploadForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Uploading Blog</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header"><strong>What's new ?</strong></div>
+                                            <div class="card-body card-block">
+                                                <form class="form-horizontal">
+
+                                                    <div class="row form-group">
+                                                        <div class="col col-md-3">
+                                                            <label for="about" class=" form-control-label">About</label>
+                                                        </div>
+
+                                                        <div class="col-12 col-md-9">
+                                                            <input type="text" id="about" placeholder="Enter what's this Blog about" class="form-control">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col col-md-3">
+                                                            <label for="reviewer" class=" form-control-label">Name of Reviewer</label>
+                                                        </div>
+
+                                                        <div class="col-12 col-md-9">
+                                                            <input type="text" id="reviewer" name="reviewer" placeholder="Enter Reviewer's Name" class="form-control">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col col-md-3">
+                                                            <label for="description" class=" form-control-label">Description</label>
+                                                        </div>
+
+                                                        <div class="col-12 col-md-9">
+                                                            <textarea name="description" id="description" rows="5" placeholder=" Mr/Ms enjoyed .." class="form-control"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col col-md-3">
+                                                            <label class=" form-control-label">Type</label>
+                                                        </div>
+
+                                                        <div class="col-12 col-md-9">
+                                                            <select name="type" id="type" class="form-control-sm form-control">
+                                                                <option value="attire">Attire</option>
+                                                                <option value="environment">Environment</option>
+                                                                <option value="food">Food</option>
+                                                                <option value="service">Service</option>
+                                                                <option value="staff">Staff</option>
+                                                                <option value="management">Management</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col col-md-3">
+                                                            <label class=" form-control-label">Reaction</label>
+                                                        </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <select name="react" id="react" class="form-control-sm form-control">
+                                                            <option value="amazed">Amazed</option>
+                                                            <option value="excitement">Excitement</option>
+                                                            <option value="warmth">Warmth</option>
+                                                            <option value="satisfaction">Satisfaction</option>
+                                                            <option value="comfort">Comfort</option>
+                                                            <option value="nostalgia">Nostalgia</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="form-group">
+                                                        <input type="file" class="form-control" name="image" id="image" onchange="displayImage(this)" required>
+                                                    </div>
+                                                    <div class="selected-image-container">
+                                                        <img class="selected-image" src="#" alt="Selected Image" style="max-width: 170px; display: none;">
+                                                    </div>
+                                                </form>
+                                            </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-sm" id="uploadBlogBtn"><i class="fa fa-dot-circle-o"></i> Upload </button>
+                            <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Exit </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+        <!--Update blog MODAL-->
+            <div class="modal fade" id="BlogUpdateForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitl">Updating Blog</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header"><strong>Make Changes</strong></div>
+                                    <div class="card-body card-block">
+                                    <form class="form-horizontal">
+                                        <div class="row form-group">
+                                                <input type="text" id="b_id" style="display: none;">
+
+                                            <div class="col col-md-3">
+                                                <label for="about" class=" form-control-label">About</label>
+                                            </div>
+
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="update_about"  class="form-control">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row form-group">
+
+                                            <div class="col col-md-3">
+                                                <label for="reviewer" class=" form-control-label">Name of Reviewer</label>
+                                            </div>
+
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="update_reviewer" name="reviewer"  class="form-control">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label for="description" class=" form-control-label">Description</label>
+                                            </div>
+
+                                            <div class="col-12 col-md-9">
+                                                <textarea name="description" id="update_description" rows="5"  class="form-control"></textarea>
+                                            </div>
+
+                                        </div>
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label class=" form-control-label">Type</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="type" id="update_type" class="form-control-sm form-control">
+                                                        <option value="attire">Attire</option>
+                                                        <option value="environment">Environment</option>
+                                                        <option value="food">Food</option>
+                                                        <option value="service">Service</option>
+                                                        <option value="staff">Staff</option>
+                                                        <option value="management">Management</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label class=" form-control-label">Reaction</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="react" id="update_react" class="form-control-sm form-control">
+                                                        <option value="amazed">Amazed</option>
+                                                        <option value="excitement">Excitement</option>
+                                                        <option value="warmth">Warmth</option>
+                                                        <option value="satisfaction">Satisfaction</option>
+                                                        <option value="comfort">Comfort</option>
+                                                        <option value="nostalgia">Nostalgia</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        <div class="form-group">
+                                            <input type="file" class="form-control" name="image" id="update_image" onchange="displayImage(this)" required>
+                                        </div>
+                                        <div class="selected-image-container">
+                                            <img class="selected-image" src="#" alt="Selected Image" style="max-width: 170px; display: none;">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary btn-sm" id="updateBlogBtn"><i class="fa fa-dot-circle-o"></i> Update Blog </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+   </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function displayImage(input) {
+            var selectedImage = document.getElementsByClassName('selected-image');
+            var selectedImageContainer = document.getElementsByClassName('selected-image-container');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    selectedImage.setAttribute('src', e.target.result);
+                    selectedImage.style.display = 'block';
+                    selectedImageContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+$(document).ready(function(){
+
+    $(document).on('click', '.delBlog', function(e){
+        e.preventDefault();
+        var id = $(this).closest('#cardBody').find('.b_id').val();
+        console.log("Blog Deleted", id)
+        $.ajax({
+            type:'DELETE',
+            url:'/deleteBlog/' + id,
+            success: function(res){
+                console.log(res);
+                window.location.href = '/blog'
+            },
+        });
+    });
+
+    $('#uploadBlog').on('click', function(e){
+        e.preventDefault();
+        console.log("Upload Blog");
+        $('#BlogUploadForm').modal('show');
+    });
+
+    $('#uploadBlogBtn').on('click', function(e){
+        e.preventDefault();
+        var ab = $('#about').val();
+        var nm = $('#reviewer').val();
+        var des = $('#description').val();
+        var type = $('#type').val();
+        var re = $('#react').val();
+        var img = $('#image')[0].files[0];
+        console.log(ab, nm, des, type, re, img)
+
+        var formData = new FormData();
+        formData.append('image',img)
+        formData.append('about',ab)
+        formData.append('reviewer',nm)
+        formData.append('type',type)
+        formData.append('react',re)
+        formData.append('description',des)
+
+        $.ajax({
+            type: 'POST',
+            url: '/uploadBlog',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res){
+                console.log(res)
+                window.location.href = '/blog';
+            },
+        });
+    });
+
+    $('.updateBlog').on('click',function(e){
+        e.preventDefault();
+        $('#BlogUpdateForm').modal('show')
+        var id = $(this).closest('#cardBody').find('.b_id').val();
+        var ab = $(this).closest('#cardBody').find('.b_about').text();
+        var des = $(this).closest('#cardBody').find('.b_des').text();
+        var nm = $(this).closest('#cardBody').find('.b_name').val();
+
+            $('#b_id').val(id);
+            $('#update_about').val(ab);
+            $('#update_reviewer').val(nm);
+            $('#update_description').val(des);
+            $('#BlogUpdateForm').modal('show');
+    });
+    $('#updateBlogBtn').on('click', function(e){
+        e.preventDefault();
+        var id = $('#b_id').val()
+        var ab = $('#update_about').val();
+        var nm = $('#update_reviewer').val();
+        var des = $('#update_description').val();
+        var type = $('#update_type').val();
+        var re = $('#update_react').val();
+        var img = $('#update_image')[0].files[0];
+        console.log(ab, nm, des, type, re, img, id)
+
+        var formData = new FormData();
+        formData.append('image',img)
+        formData.append('about',ab)
+        formData.append('reviewer',nm)
+        formData.append('type',type)
+        formData.append('react',re)
+        formData.append('description',des)
+
+        $.ajax({
+            type: 'PUT',
+            url: '/updateBlog/' + id,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res){
+                console.log(res)
+                window.location.href = '/blog';
+            },
+        });
+    });
+});
+</script>
+<script src="{{ url_for('static', filename='vendor/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap-4.1/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/slick/slick.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/animsition/animsition.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/counter-up/jquery.waypoints.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/counter-up/jquery.counterup.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/circle-progress/circle-progress.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/chartjs/Chart.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>

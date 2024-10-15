@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <title>Menu</title>
+<link href="{{ url_for('static', filename='css/font-face.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+
+<link href="{{ url_for('static', filename='vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+
+<link href="{{ url_for('static', filename='vendor/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/wow/animate.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/slick/slick.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+<link href="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
+
+<link href="{{ url_for('static', filename='css/theme.css') }}" rel="stylesheet" media="all">
+<style>
+    .bordered-table {
+    border-collapse: collapse; /* Ensures that the borders are merged */
+    width: 100%; /* Ensures the table takes up the full width of its container */
+}
+
+.bordered-table th, .bordered-table td {
+    border: 1px solid #000; /* Adds a solid black border to the cells */
+    padding: 8px; /* Adds some padding inside the cells for better readability */
+    text-align: left; /* Aligns the text to the left */
+}
+
+.bordered-table th {
+    background-color: #f2f2f2; /* Adds a light grey background to the header cells */
+}
+
+</style>
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+<!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <img src="static/images/icon/logo.png" alt="Admin" />
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="/"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="/ordertable"><i class="fas fa-chart-bar"></i>Orders</a>
+                        </li>
+                        <li>
+                            <a href="/reservation"><i class="fas fa-table"></i>Reservation</a>
+                        </li>
+                        <li>
+                            <a href="/menu"><i class="far fa-check-square"></i>Menu</a>
+                        </li>
+                        <li>
+                            <a href="/blog"><i class="fas fa-calendar-alt"></i>Blogs</a>
+                        </li>
+                        <li>
+                            <a href="/feedback"><i class="fas fa-map-marker-alt"></i>Feedback/Complain</a>
+                        </li>
+                        <li>
+                           <a href="/staff"><i class="fa-solid fa-users-line"></i>Staff</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+                        <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <form class="form-header" action="" method="POST">
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <button class="au-btn--submit" type="submit">
+                                    <i class="zmdi zmdi-search"></i>
+                                </button>
+                            </form>
+                            <div class="header-button">
+                                <div class="noti-wrap">
+                                        <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-email"></i>
+                                        <span class="quantity" >{{totalFeedComp}}</span>
+                                        <div class="email-dropdown js-dropdown">
+                                            <div class="email__title">
+                                                <p>New Feedback & Complains</p>
+                                            </div>
+                                            {% for c in notiData%}
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="static/images/icon/avatar-07.jpg" alt="Customer Profile Picture" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>{{c[0]}}</p>
+                                                    <span>{{c[1]}} on {{c[2]}} at {{c[3]}} </span>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                            <div class="email__footer">
+                                                <a href="#">See all notifications</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-notifications"></i>
+                                        <span class="quantity"></span>
+                                        <div class="notifi-dropdown js-dropdown">
+                                            <div class="notifi__title">
+                                                <p>Orders Notifications</p>
+                                            </div>
+                                            {% for o in order%}
+                                            <div class="notifi__item">
+                                                <div class="bg-c3 img-cir img-40">
+                                                    <i class="zmdi zmdi-file-text"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <p>{{o[0]}}</p>
+                                                    <span class="date">Ph: {{o[1]}}</span>
+                                                    <span class="date">{{o[2]}} at {{o[3]}}</span>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                            <div class="notifi__footer">
+                                                <a href="#">See all Orders</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img src={{dp}} alt={{username}} />
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">{{username}}</a>
+                                            <input type="hidden" id="admin_id" value={{admin_id}}>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src="{{dp}}" alt={{username}} />
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">{{username}}</a>
+                                                    </h5>
+                                                    <span class="email">{{email}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                <div class="account-dropdown__item">
+                                                    <a href="/updateAdminAccount"><i class="zmdi zmdi-account"></i>Update Account</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="/registerAdminAccount"><i class="fa fa-edit"></i>Register</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#" id="deleteAccountLink"><i class="fa fa-power-off"></i>Delete Account</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="/loginAdminAccount"><i class="fa fa-plus-circle"></i>Login to Another Account</a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="/logout"><i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <!--Main Menu Details-->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1>Main Menu Details</h1>
+                                    <div class="text-right" style="padding-bottom: 10px; padding-right: 15px; ">
+                                        <button type="button" class="btn btn-dark" id="mmbtn">+ Add Item</button>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="table-responsive table--no-card m-b-30">
+                                            <table class="table table-borderless table-striped table-earning">
+                                                <thead>
+                                                    <tr>
+                                                        <th>name</th>
+                                                        <th>price (Rs.)</th>
+                                                        <th>details</th>
+                                                        <th>type</th>
+                                                        <th>Addition Date</th>
+                                                        <th>Customize</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for mm in main_menu %}
+                                                    <tr>
+                                                        <td style="display:none;" class="mm_id">{{mm[0]}}</td>
+                                                        <td class="name">{{mm[1]}}</td>
+                                                        <td class="price">{{mm[2]}}</td>
+                                                        <td class="details">{{mm[3]}}</td>
+                                                        <td class="type">{{mm[4]}}</td>
+                                                        <td>{{mm[5]}}</td>
+                                                        <td>
+                                                            <a href="#" class="EditMM">Edit</a> /
+                                                            <a href="#" class="RemoveMM">Remove</a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Main Menu Details Ends-->
+                        </div>
+                        <div class="container-fluid">
+                            <!--Fast Food Menu Details-->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1>Fast Food Menu Details</h1>
+                                    <div class="text-right" style="padding-bottom: 10px; padding-right: 15px; ">
+                                        <button type="button" class="btn btn-dark" id="ffbtn">+ Add Item</button>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="table-responsive table--no-card m-b-30">
+                                            <table class="table table-borderless table-striped table-earning">
+                                                <thead>
+                                                    <tr>
+                                                        <th>name</th>
+                                                        <th>price (Rs.)</th>
+                                                        <th>details</th>
+                                                        <th>type</th>
+                                                        <th>Addition Date</th>
+                                                        <th>Customize</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for ff in fast_food %}
+                                                    <tr>
+                                                        <td style="display:none;" class="ff_id">{{ff[0]}}</td>
+                                                        <td class="ffname">{{ff[1]}}</td>
+                                                        <td class="ffprice">{{ff[2]}}</td>
+                                                        <td class="ffdetails">{{ff[3]}}</td>
+                                                        <td class="fftype">{{ff[4]}}</td>
+                                                        <td>{{ff[5]}}</td>
+                                                        <td>
+                                                            <a href="#" class="EditFF">Edit</a> /
+                                                            <a href="#" class="RemoveFF">Remove</a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Fast Food Details Ends-->
+                        </div>
+                        <div class="container-fluid">
+                            <!--Deals Menu Details-->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1>Deals Details</h1>
+                                    <div class="text-right" style="padding-bottom: 10px; padding-right: 15px; ">
+                                        <button type="button" class="btn btn-dark" id="dmbtn">+ Add Item</button>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="table-responsive table--no-card m-b-30">
+                                            <table class="table table-borderless table-striped table-earning">
+                                                <thead>
+                                                    <tr>
+                                                        <th>name</th>
+                                                        <th>price (Rs.)</th>
+                                                        <th>Discount Rate (%)</th>
+                                                        <th>Discounted Price (Rs.)</th>
+                                                        <th>details</th>
+                                                        <th>type</th>
+                                                        <th>Addition Date</th>
+                                                        <th>Customize</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for dm in deals_menu %}
+                                                    <tr>
+                                                        <td style="display:none;" class="dm_id">{{dm[0]}}</td>
+                                                        <td class="dmname">{{dm[1]}}</td>
+                                                        <td class="dmprice">{{dm[2]}}</td>
+                                                        <td class="discount">{{dm[6]}}</td>
+                                                        <td class="disPrice">{{dm[7]}}</td>
+                                                        <td class="dmdetails">{{dm[3]}}</td>
+                                                        <td class="dmtype">{{dm[4]}}</td>
+                                                        <td>{{dm[5]}}</td>
+                                                        <td>
+                                                            <a href="#" class="EditDM">Edit</a> /
+                                                            <a href="#" class="RemoveDM">Remove</a>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Deals Details Ends-->
+                        </div>
+                    </div>
+                </div>
+
+
+
+    <!--add-mm-MODAL-->
+    <div class="modal fade" id="mmForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">+ Add Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <div class="row">
+	                        <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header"><strong>Main Menu</strong></div>
+                            <div class="card-body card-block">
+                            <form class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="name" class=" form-control-label">Name</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="name" placeholder="Enter name of item" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="price" class=" form-control-label">Price</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="price" name="price" placeholder="Enter Price in Rs." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="details" class=" form-control-label">Details</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <textarea name="details" id="details" rows="5" placeholder="Meat + Sauce +..." class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Type</label>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="type" class=" form-control-label"></label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="type" id="type" class="form-control-sm form-control">
+                                                <option value="main">Main</option>
+                                                <option value="dessert">Dessert</option>
+                                                <option value="stater">Stater</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-sm" id="mmitemadd"><i class="fa fa-dot-circle-o"></i> Add</button>
+                            <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Cancel </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!--edit-mm-MODAL-->
+    <div class="modal fade" id="mmeditForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle2">+ Add Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <div class="row">
+	                        <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header"><strong>Main Menu</strong></div>
+                            <div class="card-body card-block">
+                            <form class="form-horizontal">
+                                <div class="row form-group">
+                                    <input type="text" id="mm_id" class="form-control" style="display: none; ">
+                                    <div class="col col-md-3">
+                                        <label for="name" class=" form-control-label">Name</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="e_name" placeholder="Enter name of item" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="price" class=" form-control-label">Price</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="e_price" name="price" placeholder="Enter Price in Rs." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="details" class=" form-control-label">Details</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <textarea name="details" id="e_details" rows="5" placeholder="Meat + Sauce +..." class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Type</label>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="type" class=" form-control-label"></label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="type" id="e_type" class="form-control-sm form-control">
+                                                <option value="main">Main</option>
+                                                <option value="dessert">Dessert</option>
+                                                <option value="stater">Stater</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-sm" id="mmitemedit"><i class="fa fa-dot-circle-o"></i>Edit</button>
+                            <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Cancel </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--add-ff-MODAL-->
+    <div class="modal fade" id="ffForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle3">+ Add Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <div class="row">
+	                        <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header"><strong>Fast Food Menu</strong></div>
+                            <div class="card-body card-block">
+                            <form class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="name" class=" form-control-label">Name</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ffname" placeholder="Enter name of item" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="price" class=" form-control-label">Price</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ffprice" name="price" placeholder="Enter Price in Rs." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="details" class=" form-control-label">Details</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <textarea name="details" id="ffdetails" rows="5" placeholder="Meat + Sauce +..." class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">Type</label>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="type" class=" form-control-label"></label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="type" id="fftype" class="form-control-sm form-control">
+                                                <option value="burger">Burger</option>
+                                                <option value="pizza">Pizza</option>
+                                                <option value="other">Others</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-sm" id="ffitemadd"><i class="fa fa-dot-circle-o"></i> Add</button>
+                            <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Cancel </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--edit-ff-MODAL-->
+<div class="modal fade" id="ffeditForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle4">+ Add Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header"><strong>Fast Food Menu</strong></div>
+                    <div class="card-body card-block">
+                        <form class="form-horizontal">
+                            <input type="text" id="ff_id" class="form-control" style="display: none;">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-3 form-control-label">Name</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="ff_e_name" placeholder="Enter name of item" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="price" class="col-md-3 form-control-label">Price</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="ff_e_price" name="price" placeholder="Enter Price in Rs." class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="details" class="col-md-3 form-control-label">Details</label>
+                                <div class="col-12 col-md-9">
+                                    <textarea name="details" id="ff_e_details" rows="5" placeholder="Meat + Sauce +..." class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="type" class="col-md-3 form-control-label">Type</label>
+                                <div class="col-12 col-md-9">
+                                    <select name="type" id="ff_e_type" class="form-control-sm form-control">
+                                        <option value="burger">Burger</option>
+                                        <option value="pizza">Pizza</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-sm" id="ffitemedit">
+                            <i class="fa fa-dot-circle-o"></i> Edit
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-sm">
+                            <i class="fa fa-ban"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--add-deals-MODAL-->
+    <div class="modal fade" id="dmForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle5">Add a new Deal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header"><strong>Deals</strong></div>
+                    <div class="card-body card-block">
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-3 form-control-label">Name</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="dmname" placeholder="Enter name of item" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="type" class="col-md-3 form-control-label">Type</label>
+                                <div class="col-12 col-md-9">
+                                    <select name="type" id="dmtype" class="form-control-sm form-control">
+                                        <option value="midnight">MidNight</option>
+                                        <option value="occasion">Occasionally</option>
+                                        <option value="special">Special</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="price" class="col-md-3 form-control-label">Total Price</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="dmprice" name="price" placeholder="Enter Price in Rs." class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="discount" class="col-md-3 form-control-label">Discount</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="discount" name="discount" placeholder="Enter %age of discount" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="dmDisPrice" class="col-md-3 form-control-label">Discount Price</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="dmDisPrice" name="dmDisPrice" placeholder="Rs.0.." class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="details" class="col-md-5 form-control-label"><strong>Items Selected</strong></label>
+                                <div class="col-12 col-md-12">
+                                    <table class="col-12 bordered-table tbodyRefresh">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for p in PreDealsList %}
+                                            <tr>
+                                                <td class="preDealItemTableId" style="display: none;" value="{{p[0]}}">{{p[0]}}</td>
+                                                <td class="preDealItemTableName">{{p[1]}}</td>
+                                                <td class="preDealItemTablePrice">{{p[2]}}</td>
+                                                <td><a href="#" class="removeItemToPreDealTable">Remove</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="details" class="col-md-5 form-control-label"><strong>Main Menu Items</strong></label>
+                                <div class="col-12 col-md-12">
+                                    <table class="col-12 bordered-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for m in main_menu %}
+                                            <tr>
+                                                <td class="preDealItemId" style="display: none;" value="{{m[0]}}">{{m[0]}}</td>
+                                                <td class="preDealItemName">{{m[1]}}</td>
+                                                <td class="preDealItemPrice">{{m[2]}}</td>
+                                                <td><a href="#" class="addItemToPreDealTable">Add+</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="details" class="col-md-5 form-control-label"><strong>Fast Food Items</strong></label>
+                                <div class="col-12 col-md-12">
+                                    <table class="col-12 bordered-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for f in fast_food %}
+                                            <tr>
+                                                <td class="preDealItemId" style="display: none;" value="{{f[0]}}">{{f[0]}}</td>
+                                                <td class="preDealItemName">{{f[1]}}</td>
+                                                <td class="preDealItemPrice">{{f[2]}}</td>
+                                                <td><a href="#" class="addItemToPreDealTable">Add+</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-sm" id="dmitemadd"><i class="fa fa-dot-circle-o"></i> Add</button>
+                        <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--edit-deals-MODAL-->
+    <div class="modal fade" id="dmeditForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle0">Edit Deal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header"><strong>Deals</strong></div>
+                    <div class="card-body card-block">
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <input type="text" id="dm_id " style="display: none">
+                                <label for="name" class="col-md-3 form-control-label">Name</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="up_dmname" placeholder="Enter name of item" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="type" class="col-md-3 form-control-label">Type</label>
+                                <div class="col-12 col-md-9">
+                                    <select name="type" id="up_dmtype" class="form-control-sm form-control">
+                                        <option value="midnight">MidNight</option>
+                                        <option value="occasion">Occasionally</option>
+                                        <option value="special">Special</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="price" class="col-md-3 form-control-label">Total Price</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="up_dmprice" name="price" placeholder="Enter Price in Rs." class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="discount" class="col-md-3 form-control-label">Discount</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="up_discount" name="discount" placeholder="Enter %age of discount" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="dmDisPrice" class="col-md-3 form-control-label">Discount Price</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="up_dmDisPrice" name="dmDisPrice" placeholder="Rs.0.." class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="dmDisPrice" class="col-md-3 form-control-label">Existing items</label>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="up_dmdetails" name="up_dmdetails" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="details" class="col-md-5 form-control-label"><strong>Items Selected</strong></label>
+                                <div class="col-12 col-md-12">
+                                    <table class="col-12 bordered-table tbodyRefresh">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for p in PreDealsList %}
+                                            <tr>
+                                                <td class="preDealItemTableId" style="display: none;" value="{{p[0]}}">{{p[0]}}</td>
+                                                <td class="preDealItemTableName">{{p[1]}}</td>
+                                                <td class="preDealItemTablePrice">{{p[2]}}</td>
+                                                <td><a href="#" class="removeItemToPreDealTable">Remove</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="details" class="col-md-5 form-control-label"><strong>Main Menu Items</strong></label>
+                                <div class="col-12 col-md-12">
+                                    <table class="col-12 bordered-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for m in main_menu %}
+                                            <tr>
+                                                <td class="preDealItemId" style="display: none;" value="{{m[0]}}">{{m[0]}}</td>
+                                                <td class="preDealItemName">{{m[1]}}</td>
+                                                <td class="preDealItemPrice">{{m[2]}}</td>
+                                                <td><a href="#" class="addItemToPreDealTable">Add+</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="details" class="col-md-5 form-control-label"><strong>Fast Food Items</strong></label>
+                                <div class="col-12 col-md-12">
+                                    <table class="col-12 bordered-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Price</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for f in fast_food %}
+                                            <tr>
+                                                <td class="preDealItemId" style="display: none;" value="{{f[0]}}">{{f[0]}}</td>
+                                                <td class="preDealItemName">{{f[1]}}</td>
+                                                <td class="preDealItemPrice">{{f[2]}}</td>
+                                                <td><a href="#" class="addItemToPreDealTable">Add+</a></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-sm" id="dmitemedit"><i class="fa fa-dot-circle-o"></i> Save Changes</button>
+                        <button type="reset" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+	        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+
+    $(document).ready(function(){
+
+        $('#mmbtn').on('click',function(e){
+            e.preventDefault();
+            $('#mmForm').modal('show');
+        });
+
+        $('#mmitemadd').on('click',function(e){
+            e.preventDefault();
+                var id = $('#mm_id').val();
+                var nm = $('#name').val();
+                var pr = $('#price').val();
+                var de = $('#details').val();
+                var ty = $('#type').val();
+                console.log(nm, pr, de, ty, id);
+
+                    var formdata = new FormData();
+                    formdata.append('name',nm);
+                    formdata.append('price',pr);
+                    formdata.append('details',de);
+                    formdata.append('type',ty);
+                    formdata.append('id',id);
+
+                    $.ajax({
+                        type:'POST',
+                        url:'/addToMainMenu',
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function(res){
+                            console.log(res);
+                            window.location.href = '/menu';
+                        },
+                });
+
+        });
+
+        $(document).on('click','.RemoveMM', function(){
+            var row = $(this).closest('tr');
+            var mm_id = row.find('.mm_id').text()
+            console.log(mm_id);
+            $.ajax({
+                type:'DELETE',
+                url:'/deletemm/' + mm_id,
+                success: function(res){
+                    console.log(res);
+                    window.location.href = '/menu'
+                },
+            });
+        });
+
+        $(document).on('click','.EditMM', function(e){
+            e.preventDefault();
+            var row = $(this).closest('tr');
+            var id = row.find('.mm_id').text();
+            var nm = row.find('.name').text();
+            var pr = row.find('.price').text();
+            var dt = row.find('.details').text();
+            console.log(nm, pr, dt, id);
+             $('#mm_id').val(id);
+             $('#e_name').val(nm);
+             $('#e_price').val(pr);
+             $('#e_details').val(dt);
+            $('#mmeditForm').modal('show');
+        });
+
+        $('#mmitemedit').on('click',function(e){
+            e.preventDefault();
+                var id = $('#mm_id').val();
+                var nm = $('#e_name').val();
+                var pr = $('#e_price').val();
+                var de = $('#e_details').val();
+                var ty = $('#e_type').val();
+                console.log(nm, pr, de, ty, id);
+
+                    var formdata = new FormData();
+                    formdata.append('name',nm);
+                    formdata.append('price',pr);
+                    formdata.append('details',de);
+                    formdata.append('type',ty);
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'/updateMainMenu/' + id,
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function(res){
+                            console.log(res);
+                            window.location.href = '/menu';
+                        },
+                });
+
+        });
+    });<!--1-->
+
+
+    $(document).ready(function(){
+        $('#ffbtn').on('click',function(e){
+            e.preventDefault();
+            $('#ffForm').modal('show');
+        });
+
+        $('#ffitemadd').on('click',function(e){
+            e.preventDefault();
+                var nm = $('#ffname').val();
+                var pr = $('#ffprice').val();
+                var de = $('#ffdetails').val();
+                var ty = $('#fftype').val();
+
+                    var formdata = new FormData();
+                    formdata.append('name',nm);
+                    formdata.append('price',pr);
+                    formdata.append('details',de);
+                    formdata.append('type',ty);
+
+                    $.ajax({
+                        type:'POST',
+                        url:'/addToFastFood',
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function(res){
+                            console.log(res);
+                            window.location.href = '/menu';
+                        },
+                });
+
+        });
+
+        $(document).on('click','.RemoveFF', function(){
+            var row = $(this).closest('tr');
+            var ff_id = row.find('.ff_id').text()
+            console.log(ff_id);
+            $.ajax({
+                type:'DELETE',
+                url:'/deleteff/' + ff_id,
+                success: function(res){
+                    console.log(res);
+                    window.location.href = '/menu'
+                },
+            });
+        });
+
+        $(document).on('click','.EditFF', function(e){
+            e.preventDefault();
+            var row = $(this).closest('tr');
+            var id = row.find('.ff_id').text();
+            var nm = row.find('.ffname').text();
+            var pr = row.find('.ffprice').text();
+            var dt = row.find('.ffdetails').text();
+            console.log(nm, pr, dt, id);
+             $('#ff_id').val(id);
+             $('#ff_e_name').val(nm);
+             $('#ff_e_price').val(pr);
+             $('#ff_e_details').val(dt);
+            $('#ffeditForm').modal('show');
+        });
+
+        $('#ffitemedit').on('click',function(e){
+            e.preventDefault();
+                var id = $('#ff_id').val();
+                var nm = $('#ff_e_name').val();
+                var pr = $('#ff_e_price').val();
+                var de = $('#ff_e_details').val();
+                var ty = $('#ff_e_type').val();
+                console.log(nm, pr, de, ty, id);
+
+                    var formdata = new FormData();
+                    formdata.append('name',nm);
+                    formdata.append('price',pr);
+                    formdata.append('details',de);
+                    formdata.append('type',ty);
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'/updateFastFood/' + id,
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function(res){
+                            console.log(res);
+                            window.location.href = '/menu';
+                        },
+                });
+
+        });
+    });
+
+        $(document).ready(function(){
+        $('#dmbtn').on('click',function(e){
+            e.preventDefault();
+            $('#dmForm').modal('show');
+        });
+
+        $('.addItemToPreDealTable').on('click', function(e){
+            e.preventDefault();
+            var id = $(this).closest('tr').find('.preDealItemId').text();
+            var nm = $(this).closest('tr').find('.preDealItemName').text();
+            var pr = $(this).closest('tr').find('.preDealItemPrice').text();
+            console.log(id, nm , pr);
+
+            var formdata = new FormData();
+            formdata.append('name', nm);
+            formdata.append('price', pr);
+
+            $.ajax({
+                type:'POST',
+                url: '/preDealDetails',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                success: function(res){
+                    $('#dmprice').val(res.total);
+                    $('.tbodyRefresh').load(location.href + ' .tbodyRefresh');
+                },
+            });
+        });
+
+        $('.tbodyRefresh').on('click', '.removeItemToPreDealTable',  function(e){
+            e.preventDefault();
+            var id = $(this).closest('tr').find('.preDealItemTableId').text()
+            console.log(id)
+            $.ajax({
+                type:'DELETE',
+                url:'/deletePreDealItem/' + id,
+                success: function(res){
+                    console.log(res);
+                    $('.tbodyRefresh').load(location.href + ' .tbodyRefresh');
+                    $('#dmprice').val(res)
+                },
+            });
+        });
+
+        $('#discount').on('input', function() {
+            const price = parseFloat($('#dmprice').val());
+            const discount = parseFloat($('#discount').val());
+
+            if (!isNaN(price) && !isNaN(discount)) {
+                const discountAmount = (price * discount) / 100;
+                const discountedPrice = price - discountAmount;
+                $('#dmDisPrice').val(discountedPrice.toFixed(0));
+            } else {
+                $('#dmDisPrice').val('');
+            }
+        });
+
+        $('#dmitemadd').on('click',function(e){
+            e.preventDefault();
+                var nm = $('#dmname').val();
+                var ty = $('#dmtype').val();
+                var tpr = $('#dmprice').val();
+                var ds = $('#discount').val();
+                var dspr = $('#dmDisPrice').val();
+
+                    var formdata = new FormData();
+                    formdata.append('name',nm);
+                    formdata.append('type',ty);
+                    formdata.append('price',tpr);
+                    formdata.append('discount',ds);
+                    formdata.append('disPrice',dspr);
+
+
+                    $.ajax({
+                        type:'POST',
+                        url:'/addToDeals',
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function(res){
+                            console.log(res);
+                            window.location.href = '/menu';
+                        },
+                });
+
+        });
+
+        $(document).on('click','.RemoveDM', function(){
+            var row = $(this).closest('tr');
+            var dm_id = row.find('.dm_id').text()
+            console.log(dm_id);
+            $.ajax({
+                type:'DELETE',
+                url:'/deletedeals/' + dm_id,
+                success: function(res){
+                    console.log(res);
+                    window.location.href = '/menu'
+                },
+            });
+        });
+
+        $(document).on('click','.EditDM', function(e){
+            e.preventDefault();
+            var id = $(this).closest('tr').find('.dm_id').text();;
+            var nm = $(this).closest('tr').find('.dmname').text();
+            var pr = $(this).closest('tr').find('.dmprice').text();
+            var dt = $(this).closest('tr').find('.dmdetails').text();
+            var ds = $(this).closest('tr').find('.discount').text();
+            var dp = $(this).closest('tr').find('.disPrice').text();
+            var ty = $(this).closest('tr').find('.dmtype').text();
+            console.log(id, nm, pr, dt, ds, dp, ty);
+
+            $('#dm_id').val(id);
+            $('#up_dmname').val(nm);
+            $('#up_dmtype').val(ty);
+            $('#up_dmprice').val(pr);
+            $('#up_discount').val(ds);
+            $('#up_dmDisPrice').val(dp);
+            $('#up_dmdetails').val(dt);
+            $('#dmeditForm').modal('show');
+        });
+
+        $('#up_discount').on('input', function() {
+            const price = parseFloat($('#up_dmprice').val());
+            const discount = parseFloat($('#up_discount').val());
+
+            if (!isNaN(price) && !isNaN(discount)) {
+                const discountAmount = (price * discount) / 100;
+                const discountedPrice = price - discountAmount;
+                $('#up_dmDisPrice').val(discountedPrice.toFixed(0));
+            } else {
+                $('#up_dmDisPrice').val('');
+            }
+        });
+
+        $('#dmitemedit').on('click',function(e){
+            e.preventDefault();
+                var id = $('#dm_id').val();
+                var nm = $('#dm_e_name').val();
+                var pr = $('#dm_e_price').val();
+                var de = $('#dm_e_details').val();
+                var ty = $('#dm_e_type').val();
+                console.log(nm, pr, de, ty, id);
+
+                    var formdata = new FormData();
+                    formdata.append('name',nm);
+                    formdata.append('price',pr);
+                    formdata.append('details',de);
+                    formdata.append('type',ty);
+
+                    $.ajax({
+                        type:'PUT',
+                        url:'/updateDeals/' + id,
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        success: function(res){
+                            console.log(res);
+                            window.location.href = '/menu';
+                        },
+                });
+
+        });
+    });<!--3-->
+</script>
+    <!-- Jquery JS-->
+<script src="{{ url_for('static', filename='vendor/jquery-3.2.1.min.js') }}"></script>
+<!-- Bootstrap JS-->
+<script src="{{ url_for('static', filename='vendor/bootstrap-4.1/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
+<!-- Vendor JS -->
+<script src="{{ url_for('static', filename='vendor/slick/slick.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/animsition/animsition.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/counter-up/jquery.waypoints.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/counter-up/jquery.counterup.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/circle-progress/circle-progress.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/chartjs/Chart.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+
+<!-- Main JS-->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>
+<!-- end document-->

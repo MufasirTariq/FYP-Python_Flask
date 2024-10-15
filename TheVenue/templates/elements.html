@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Elements</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Venue template project">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.css') }}">
+<link href="{{ url_for('static', filename='plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css') }}">
+<link href="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='plugins/jquery-timepicker/jquery.timepicker.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/contact.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/contact_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/elements.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/elements_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/menu.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/menu_responsive.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+<style>
+		.dish_list {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Items should be in a column */
+}
+
+.dish {
+    margin-bottom: 20px; /* Adjust spacing between items */
+}
+
+.dish_title_container {
+    display: flex; /* Align items horizontally */
+    justify-content: space-between; /* Distribute items evenly */
+    align-items: center; /* Center items vertically */
+}
+
+	</style>
+</head>
+<body>
+
+<div class="super_container">
+	
+	<!-- Header -->
+
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start">
+						<div class="logo">
+							<a href="#">
+								<div>The Venue</div>
+								<div>restaurant</div>
+							</a>
+						</div>
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="/">home</a></li>
+								<li><a href="/about">about us</a></li>
+								<li><a href="/menu">menu</a></li>
+								<li><a href="/elements">delivery</a></li>
+								<li><a href="/feedback">feedback</a></li>
+								<li><a href="/contact">reservation</a></li>
+                            `</ul>
+						</nav>
+						<div class="reservations_phone ml-auto">Delivery</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<!-- Home -->
+	<div class="home">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="static/images/elements.jpg" data-speed="0.8"></div>
+		<div class="home_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content text-center">
+							<div class="home_subtitle page_subtitle">The Venue</div>
+							<div class="home_title"><h1>Continue To Complete Order</h1></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="themenu">
+    <div class="container">
+        <div class="row themenu_row">
+            <!-- Cart-->
+            <div class="col-lg-12 themenu_column">
+                <div class="themenu_col trans_400">
+                    <div class="themenu_col_title">Your Cart</div>
+                    <div class="dish_list">
+                        <div class="dishes_container">
+                             {% for d in cart %}
+                            <div class="dish">
+                                <div class="dish_title_container d-flex flex-column align-items-start justify-content-start">
+                                    <div class="dish_id" style="display:none">{{d[0]}}</div>
+									<div class="dish_title">{{d[1]}}</div>
+                                    <div class="dish_price">{{d[2]}}</div>
+                                    <div class="dish_type" >{{d[4]}}</div>
+                                    <div class="dish_details">{{d[3]}}</div>
+                                    <div class="dish_order"><a href="#" class="deleteItem">Cancel</a></div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+								<div class="dish_title" >Total</div>
+								<div class="dish_price">{{total}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--	Form-->
+<div class="themenu">
+    <div class="container">
+        <div class="row themenu_row">
+            <!-- Cart-->
+            <div class="col-lg-12 themenu_column">
+                <div class="themenu_col trans_400">
+                    <div class="themenu_col_title">Personal</div>
+					<div id="form" >
+                        <form>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="email">Email</label>
+                                  <input type="email" class="form-control" id="email" placeholder="Enter your Email">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+                              </div>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="area">Area</label>
+                                  <input type="text" class="form-control" id="area" placeholder="Gulberg, Jt, DHA...">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="phone">Contact</label>
+                                  <input type="text" class="form-control" id="phone" placeholder="03xx-xxxxxxx">
+                                </div>
+                                  <input type="text" class="form-control" id="total" value="{{total}}" style="display: none;">
+                              </div>
+                            <button type="submit" class="btn btn-primary" id="complete-order">Complete Order</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+
+                <!-- Footer Logo -->
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_logo">
+                        <div class="footer_logo_title">The Venue</div>
+                        <div class="footer_logo_subtitle">restaurant</div>
+                    </div>
+                    <div class="copyright">
+                        <p style="line-height: 1.2;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Project is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by PUCIT Students</a></p></div>
+                </div>
+                <!-- Footer About -->
+                <div class="col-lg-6 footer_col">
+                    <div class="footer_about">
+                        <p>"Come experience amazing food and a great time at The Venue. Our chefs put their hearts into every dish, using the freshest ingredients and keeping everything super clean. We're all about making sure you have a fantastic meal in a cozy atmosphere. So, why not join us? Your tastebuds will thank you!"</p>
+                    </div>
+                </div>
+                <!-- Footer Contact -->
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_contact">
+                        <ul>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
+                                <div><div class="footer_contact_title">Address:</div></div>
+                                <div class="footer_contact_text">Gulberg-III, Main boulevard, Lahore</div>
+                            </li>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
+                                <div><div class="footer_contact_title">Phone:</div></div>
+                                <div class="footer_contact_text">+53 345 7953 32453</div>
+                            </li>
+                            <li class="d-flex flex-row align-items-start justify-content-start">
+                                <div><div class="footer_contact_title">Email:</div></div>
+                                <div class="footer_contact_text">theVenueResraurant@gmail</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!--MODAL-->
+    <div class="modal fade" id="orderCompleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Select payment method</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <p><strong>Name:   </strong> <span id="orderCompleteName"></span></p>
+                        <p><strong>Email:   </strong> <span id="orderCompleteEmail"></span></p>
+                        <p><strong>Address:</strong> <span id="orderCompleteAddress"></span></p>
+                        <p><strong>Area:   </strong> <span id="orderCompleteArea"></span></p>
+                        <p><strong>Phone:  </strong> <span id="orderCompletePhone"></span></p>
+                        <p><strong>Items:  </strong> <span id="orderCompleteItems">{% for i in cart%} {{i[1]}} / {% endfor %} </span></p>
+                        <p><strong>Total:  </strong> <span id="orderCompleteTotal"></span></p>
+                    </div>
+                <div class="modal-footer">
+                    <h4>Choose Payment Method</h4>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="Cod_btn" >Cash on Delivery</button>
+<!--                      <button type="button" class="btn btn-primary" data-dismiss="modal" id="onlinePayment_btn" >Online-->
+                        <stripe-buy-button
+                          buy-button-id="buy_btn_1PH881Rp8Rd2j7x8fZrVYuYK"
+                          publishable-key="pk_test_51PH5QtRp8Rd2j7x8ZcsvNZDKroXNbm4THWsb7Iu0wqKItM8esUBhFPTLllFwUE3R48TWm0q3JpmpxhIEQq3oRxRG00rVjyctVg"
+                        >
+                        </stripe-buy-button>
+<!--                    </button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL-->
+    <div class="modal fade" id="orderConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLongTitle">Order Placed</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        Thank you for placing order at The Venue,
+                        <p><strong>Order ID:  </strong> <span id="orderID"></span></p>
+                        Our team will soon contact you for order confirmation and More..
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="orderConfirmedBtn">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        $('#complete-order').on('click', function(e){
+            e.preventDefault();
+
+            var bill = $('#total').val();
+            var nm = $('#name').val();
+            var em = $('#email').val();
+            var ad = $('#address').val();
+            var ar = $('#area').val();
+            var ph = $('#phone').val();
+
+            $('#orderCompleteName').text(nm);
+            $('#orderCompleteEmail').text(em);
+            $('#orderCompleteAddress').text(ad);
+            $('#orderCompletePhone').text(ph);
+            $('#orderCompleteArea').text(ar);
+            $('#orderCompleteTotal').text(bill);
+            $('#orderCompleteModal').modal('show');
+        });
+
+        $('#Cod_btn').on('click', function(e){
+            e.preventDefault();
+            var nm = $('#orderCompleteName').text();
+            var em = $('#orderCompleteEmail').text();
+            var ad = $('#orderCompleteAddress').text();
+            var ph = $('#orderCompletePhone').text();
+            var ar = $('#orderCompleteArea').text();
+            var pm = 'COD';
+            console.log(nm, em, ad, ph, ar, pm);
+
+                var formdata = new FormData();
+                formdata.append("name", nm);
+                formdata.append("email", em);
+                formdata.append("address", ad);
+                formdata.append("area", ar);
+                formdata.append("payMethod", pm);
+                formdata.append("phone", ph);
+
+            $.ajax({
+                type:'POST',
+                url:'/ordercomplete',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                success: function(res){
+                    console.log(res);
+                    $('#orderID').text(res.order_id);
+                    $('#orderConfirm').modal('show');
+                },
+            });
+        });
+
+        $('#orderConfirmedBtn').on('click', function(){
+            window.location.href = '/'
+        });
+
+        $(document).on('click','.deleteItem',function(e){
+		    e.preventDefault();
+		    var id = $(this).closest('.dish').find('.dish_id').text();
+		    console.log(id);
+
+		$.ajax({
+			type:'DELETE',
+			url:'/deleteItemFromCart/'+id,
+			success:function(res){
+				console.log(res);
+				 $('.themenu').load(location.href + ' .themenu');
+			},
+		});
+	});
+    });
+
+
+</script>
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TweenMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TimelineMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/animation.gsap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/ScrollToPlugin.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/easing/easing.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/parallax-js-master/parallax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-timepicker/jquery.timepicker.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/progressbar/progressbar.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/elements.js') }}"></script>
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+
+</body>
+</html>

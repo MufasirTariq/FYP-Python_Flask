@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Reservation</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="The Venue template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.css') }}">
+<link href="{{ url_for('static', filename='plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/animate.css') }}">
+<link href="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ url_for('static', filename='plugins/jquery-timepicker/jquery.timepicker.css') }}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/contact.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/contact_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/elements.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/elements_responsive.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/menu.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/menu_responsive.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="super_container">
+	
+	<!-- Header -->
+
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start">
+						<div class="logo">
+							<a href="#">
+								<div>The Venue</div>
+								<div>restaurant</div>
+							</a>
+						</div>
+						<nav class="main_nav">
+							<ul class="d-flex flex-row align-items-center justify-content-start">
+								<li><a href="/">home</a></li>
+								<li><a href="/about">about us</a></li>
+								<li><a href="/menu">menu</a></li>
+								<li><a href="/elements">delivery</a></li>
+								<li><a href="/feedback">feedback</a></li>
+								<li><a href="/contact">reservation</a></li>
+							</ul>
+						</nav>
+						<div class="reservations_phone ml-auto">Cart</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Home -->
+
+	<div class="home">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="static/images/contact.jpg" data-speed="0.8"></div>
+		<div class="home_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content text-center">
+							<div class="home_subtitle page_subtitle">The Venue</div>
+							<div class="home_title"><h1>For Reservation</h1></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--	Form-->
+<div class="themenu">
+    <div class="container">
+        <div class="row themenu_row">
+            <!-- Cart-->
+            <div class="col-lg-12 themenu_column">
+                <div class="themenu_col trans_400">
+                    <div class="themenu_col_title">For Reservation</div>
+					<div id="form" >
+                        <form>
+                              <div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="fname">First Name</label>
+                                  <input type="text" class="form-control" id="fname" placeholder="Enter your First name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="lname">Last Name</label>
+                                  <input type="text" class="form-control" id="lname" placeholder="Enter your Last name">
+                                </div>
+                              </div>
+							<div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="email">Email Address</label>
+                                  <input type="email" class="form-control" id="email" placeholder="email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="phone">Contact Number</label>
+                                  <input type="tel" class="form-control" id="phone" placeholder="Enter your Phone">
+                                </div>
+                              </div>
+							<div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="resDate">Date of Reservation:</label>
+                                  <input type="date" class="form-control" id="resDate">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="resTime">Time of Reservation:</label>
+                                  <input type="time" class="form-control" id="resTime">
+                                </div>
+							</div>
+
+							<div class="form-row">
+                                <div class="form-group col-md-6">
+                                  <label for="people">Number of Guests:</label>
+                                  <input type="number" class="form-control" id="people">
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="specialReq">Special Requests or Notes:</label>
+                                  <textarea class="form-control" id="specialReq" rows="2" cols="10"></textarea>
+                                </div>
+							</div>
+
+                            <button type="submit" class="btn btn-primary" id="complete-reservation">Proceed to Reservation</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	<!-- Contact -->
+
+	<div class="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="contact_title">Contact info</div>
+					<div class="contact_text">
+						<p>At our core, we thrive on building meaningful connections with our customers, fostering a sense of trust and loyalty. We are passionate about providing exceptional service and support, going above and beyond to meet their needs. Whether it's answering questions, addressing concerns, or offering guidance, we are here every step of the way. Our commitment to customer satisfaction drives everything we do, and we take pride in being a reliable partner in their journey. Together, we create more than just transactions; we build lasting relationships grounded in mutual respect and care, ensuring their experience is nothing short of exceptional.</p>
+					</div>
+					<div class="contact_logo_container">
+						<div class="contact_logo_title">The Venue</div>
+						<div class="contact_logo_subtitle">restaurant</div>
+					</div>
+				</div>
+				<div class="col-xl-5 col-lg-6">
+					<div class="contact_list_container d-flex flex-column align-items-lg-center justify-content-start">
+						<div class="contact_list_content">
+							<ul class="contact_list">
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div>Address</div></div>
+									<div>Gulberg III , Near Monal Restaurant, Lahore.</div>
+								</li>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div>Phone</div></div>
+									<div>+92 300 1234567</div>
+								</li>
+								<li class="d-flex flex-row align-items-start justify-content-start">
+									<div><div>E-mail</div></div>
+									<div>TheVenueRestaurnt@gmail.com</div>
+								</li>
+							</ul>
+							<div class="contact_social">
+								<ul class="d-flex flex-row align-items-center justify-content-start">
+									<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<!-- Footer Logo -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_logo">
+						<div class="footer_logo_title">The Venue</div>
+						<div class="footer_logo_subtitle">restaurant</div>
+					</div>
+					<div class="copyright">
+<p style="line-height: 1.2;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This Project is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by PUCIT Students</a></p></div>
+				</div>
+
+				<!-- Footer About -->
+				<div class="col-lg-6 footer_col">
+					<div class="footer_about">
+						<p>"Come experience amazing food and a great time at The Venue. Our chefs put their hearts into every dish, using the freshest ingredients and keeping everything super clean. We're all about making sure you have a fantastic meal in a cozy atmosphere. So, why not join us? Your tastebuds will thank you!"</p>
+					</div>
+				</div>
+
+				<!-- Footer Contact -->
+				<div class="col-lg-3 footer_col">
+					<div class="footer_contact">
+						<ul>
+							<li class="d-flex flex-row align-items-start justify-content-start">
+								<div><div class="footer_contact_title">Address:</div></div>
+								<div class="footer_contact_text">Gulberg-III, Main boulevard, Lahore</div>
+							</li>
+							<li class="d-flex flex-row align-items-start justify-content-start">
+								<div><div class="footer_contact_title">Phone:</div></div>
+								<div class="footer_contact_text">+53 345 7953 32453</div>
+							</li>
+							<li class="d-flex flex-row align-items-start justify-content-start">
+								<div><div class="footer_contact_title">Email:</div></div>
+								<div class="footer_contact_text">theVenueResraurant@gmail</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+<!--MODAL-->
+    <div class="modal fade" id="orderCompleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Reservation Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+
+                        <p>Dear <span id="orderCompleteName"></span>, your reservation Details are as follow;</p>
+                        <p><strong>Phone: </strong> <span id="orderCompletePhone"></span></p>
+						<p><strong>Date of Reservation: </strong> <span id="orderCompleteresDate"></span></p>
+                        <p><strong>Time of Reservation:  </strong> <span id="orderCompleteresTime"></span></p>
+                        <p><strong>Number of Guests :</strong> <span id="orderCompletepeople"></span></p>
+						<p> Soon we will contact you for more details and confirmation. Thank You!</p>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary dismissModal" data-dismiss="modal" >Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="noReservation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="LongTitle">Reservation Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <p> We are sorry to tell you, but we're already having a reservation at the time you mentioned.</p>
+						<p> But your request for reservation has been sent to the admin, soon you will recieve the confirmation message from the admin. </p>
+						<p> Thank you !</p>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary dismissModal" data-dismiss="modal" >OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+
+    $(document).ready(function(){
+        $('#complete-reservation').on('click', function(e){
+            e.preventDefault();
+
+            var fnm = $('#fname').val();
+            var lnm = $('#lname').val();
+            var em = $('#email').val();
+            var ph = $('#phone').val();
+            var dt = $('#resDate').val();
+            var tm = $('#resTime').val();
+            var pp = $('#people').val();
+            var sr = $('#specialReq').val();
+
+            var formdata = new FormData();
+            formdata.append('fname', fnm);
+            formdata.append('lname', lnm);
+            formdata.append('email', em);
+            formdata.append('phone', ph);
+            formdata.append('resDate', dt);
+            formdata.append('resTime', tm);
+            formdata.append('people', pp);
+            formdata.append('specialReq', sr);
+
+            $.ajax({
+            	type:'POST',
+            	url:'/reservation',
+            	data:formdata,
+            	contentType: false,
+            	processData: false,
+            	success: function(res){
+            		console.log(res);
+            		if (res.msg == 'Exist')
+            		{
+						 $('#noReservation').modal('show');
+                    }
+                    else
+                    {
+						 $('#orderCompleteName').text(res.fname);
+						 $('#orderCompletePhone').text(res.phone);
+						 $('#orderCompleteresDate').text(res.resDate);
+						 $('#orderCompleteresTime').text(res.resTime);
+						 $('#orderCompletepeople').text(res.people);
+						 $('#orderCompleteModal').modal('show');
+                     }
+            	},
+            });
+        });
+
+        $('.dismissModal').on('click',function(){
+        	window.location.href = '/'
+        });
+    });
+</script>
+
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='styles/bootstrap-4.1.2/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TweenMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/TimelineMax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/animation.gsap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/greensock/ScrollToPlugin.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/easing/easing.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/parallax-js-master/parallax.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-datepicker/jquery-ui.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-timepicker/jquery.timepicker.js') }}"></script>
+<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+
+</body>
+</html>
